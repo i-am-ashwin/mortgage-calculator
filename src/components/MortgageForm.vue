@@ -58,10 +58,12 @@ const handleSubmit = async () => {
           </div>
           <input
             id="propertyPrice"
+
             type="number"
             step="1"
             min="0"
             required
+
             v-model.number="formData.propertyPrice"
             class="block w-full pl-10 pr-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
             placeholder="80,000"
