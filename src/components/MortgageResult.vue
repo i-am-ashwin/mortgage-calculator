@@ -25,7 +25,7 @@ const mortgageStore = useMortgageStore()
             <h3 class="text-lg font-medium text-gray-900 mb-1">Loan to value</h3>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-blue-700">{{ formatPercentage(mortgageStore.loanToValue || 0) }} %</div>
+            <div class="text-3xl font-bold text-blue-700">{{ formatPercentage(mortgageStore.loanToValue || 0) }}</div>
           </div>
         </div>
       </div>
