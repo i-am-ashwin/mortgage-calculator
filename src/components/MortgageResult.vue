@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { useMortgageStore } from '../store/mortgage';
 import { formatCurrency, formatPercentage } from '../utils/formatter';
+import MortgageTable from './MortgageTable.vue';
 
 const mortgageStore = useMortgageStore()
 </script>
@@ -29,6 +30,7 @@ const mortgageStore = useMortgageStore()
           </div>
         </div>
       </div>
+      <MortgageTable />
     </div>
   </div>
 </template>

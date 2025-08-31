@@ -45,7 +45,7 @@ const handleSubmit = async () => {
       </div>
       <div class="space-y-2">
         <label
-          for="totalSavings"
+          for="propertyPrice"
           class="block text-sm font-medium text-gray-700"
         >
           Property Purchase Price *
@@ -57,9 +57,9 @@ const handleSubmit = async () => {
             <span class="text-gray-500 text-lg font-medium">€</span>
           </div>
           <input
-            id="totalSavings"
+            id="propertyPrice"
             type="number"
-            step="1000"
+            step="1"
             min="0"
             required
             v-model.number="formData.propertyPrice"
@@ -85,7 +85,7 @@ const handleSubmit = async () => {
           <input
             id="totalSavings"
             type="number"
-            step="1000"
+            step="1"
             min="0"
             required
             v-model.number="formData.totalSavings"
@@ -127,7 +127,11 @@ const handleSubmit = async () => {
           :disabled="mortgageStore.isLoading"
           class="w-full md:w-1/2 cursor-pointer bg-teal-600 hover:bg-teal-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:shadow-none disabled:hover:scale-100 disabled:bg-gray-500"
         >
-          <span>Calculate</span>
+          <span v-if="mortgageStore.isLoading" class="flex justify-center items-center gap-4">
+            <div class="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div>Calculating...</div>
+          </span>
+          <span v-else>Calculate</span>
         </button>
       </div>
     </form>

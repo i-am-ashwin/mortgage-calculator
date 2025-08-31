@@ -48,6 +48,7 @@ export function useHypofriend() {
           loanAmount: impliedLoanAmount,
           years: YEARS,
         },
+        fetchPolicy: "cache-first"
       })
 
       return data || null
