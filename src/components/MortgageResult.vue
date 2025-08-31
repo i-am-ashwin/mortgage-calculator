@@ -1,6 +1,7 @@
 
 <script setup lang="ts">
 import { useMortgageStore } from '../store/mortgage';
+import { formatCurrency, formatPercentage } from '../utils/formatter';
 
 const mortgageStore = useMortgageStore()
 </script>
@@ -14,7 +15,7 @@ const mortgageStore = useMortgageStore()
             <h3 class="text-lg font-medium text-gray-900 mb-1">Implied Loan</h3>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-teal-700">€ {{ mortgageStore.impliedLoanAmount }}</div>
+            <div class="text-3xl font-bold text-teal-700">€ {{ formatCurrency(mortgageStore.impliedLoanAmount || 0) }}</div>
           </div>
         </div>
       </div>
@@ -24,7 +25,7 @@ const mortgageStore = useMortgageStore()
             <h3 class="text-lg font-medium text-gray-900 mb-1">Loan to value</h3>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-blue-700">{{ mortgageStore.loanToValue }} %</div>
+            <div class="text-3xl font-bold text-blue-700">{{ formatPercentage(mortgageStore.loanToValue || 0) }} %</div>
           </div>
         </div>
       </div>

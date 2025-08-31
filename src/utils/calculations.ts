@@ -1,7 +1,7 @@
 import { BROKER_FEE_PERCENTAGE, CITY_TAX_PERCENTAGE } from "./constants";
 
 const calculateNotaryFees = (propertyPrice: number): number => {
-  return 2144.0 + (0.013 * propertyPrice - 100000);
+  return 2144.0 + (0.013 * (propertyPrice - 100000));
 };
 const calculateBrokerFees = (propertyPrice: number): number => {
   return propertyPrice * BROKER_FEE_PERCENTAGE;
