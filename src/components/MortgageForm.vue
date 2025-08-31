@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { MortgageFormData } from '../types/types'
+import { ref, watch } from "vue";
+import type { MortgageFormData } from "../types/types";
+import { useMortgageStore } from "../store/mortgage";
 
+const mortgageStore = useMortgageStore();
+const isSubmitted = ref(false);
 const formData = ref<MortgageFormData>({
-propertyPrice: null,
-realEstateCommission: false,
-repaymentRate: null,
-totalSavings: null,
-})
-const handleSubmit = () => {
-    console.log(formData)
+  propertyPrice: null,
+  realEstateCommission: false,
+  repaymentRate: null,
+  totalSavings: null,
+});
+if (mortgageStore.formData) {
+  formData.value = { ...mortgageStore.formData };
 }
+watch(formData, (nextData) => {
+  mortgageStore.updateMortgageData(nextData);
+});
+const handleSubmit = async () => {
+  console.log(formData);
+  await mortgageStore.calculateRatesTableData(formData.value);
+};
 </script>
 
 <template>
@@ -56,6 +66,7 @@ const handleSubmit = () => {
             placeholder="80,000"
           />
         </div>
+        <p v-if="isSubmitted && !formData.propertyPrice" class="text-xs text-red-500">Purchase Price is required</p>
       </div>
       <div class="space-y-2">
         <label
@@ -81,6 +92,7 @@ const handleSubmit = () => {
             placeholder="80,000"
           />
         </div>
+        <p v-if="isSubmitted && !formData.totalSavings" class="text-xs text-red-500">Total Savings is required</p>
       </div>
       <div class="space-y-2">
         <label
@@ -105,11 +117,13 @@ const handleSubmit = () => {
           >
             <span class="text-gray-500 text-lg font-medium">%</span>
           </div>
+        <p v-if="isSubmitted && !formData.repaymentRate" class="text-xs text-red-500">Annual Repayment Rate is required</p>
         </div>
       </div>
       <div class="pt-4 flex justify-end">
         <button
           type="submit"
+          :disabled="mortgageStore.isLoading"
           class="w-full md:w-1/2 cursor-pointer bg-teal-600 hover:bg-teal-800 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:shadow-none disabled:hover:scale-100 disabled:bg-gray-500"
         >
           <span>Calculate</span>
