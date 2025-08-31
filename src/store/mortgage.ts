@@ -45,6 +45,7 @@ export const useMortgageStore = defineStore("mortgage", () => {
 
   // Action
   const updateMortgageData = (newFormData: MortgageFormData): void => {
+    console.log('update mortage')
     formData.value = { ...newFormData };
   };
   const calculateRatesTableData = async (

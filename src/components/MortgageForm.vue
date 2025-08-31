@@ -15,8 +15,9 @@ if (mortgageStore.formData) {
   formData.value = { ...mortgageStore.formData };
 }
 watch(formData, (nextData) => {
+  console.log(nextData)
   mortgageStore.updateMortgageData(nextData);
-});
+}, { deep: true });
 const handleSubmit = async () => {
   console.log(formData);
   await mortgageStore.calculateRatesTableData(formData.value);

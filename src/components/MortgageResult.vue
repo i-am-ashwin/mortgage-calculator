@@ -1,3 +1,9 @@
+
+<script setup lang="ts">
+import { useMortgageStore } from '../store/mortgage';
+
+const mortgageStore = useMortgageStore()
+</script>
 <template>
   <div class="bg-white rounded-2xl shadow-xl p-8 mt-8 border border-gray-100">
     <div class="space-y-6">
@@ -8,7 +14,7 @@
             <h3 class="text-lg font-medium text-gray-900 mb-1">Implied Loan</h3>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-teal-700">€ 1000</div>
+            <div class="text-3xl font-bold text-teal-700">€ {{ mortgageStore.impliedLoanAmount }}</div>
           </div>
         </div>
       </div>
@@ -18,7 +24,7 @@
             <h3 class="text-lg font-medium text-gray-900 mb-1">Loan to value</h3>
           </div>
           <div class="text-right">
-            <div class="text-3xl font-bold text-blue-700">99 %</div>
+            <div class="text-3xl font-bold text-blue-700">{{ mortgageStore.loanToValue }} %</div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MortgageForm from './components/MortgageForm.vue';
 import MortgageResult from './components/MortgageResult.vue';
-
+import './style.css'
 </script>
 
 <template>
