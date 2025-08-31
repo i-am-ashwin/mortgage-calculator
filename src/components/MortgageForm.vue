@@ -1,15 +1,31 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import type { MortgageFormData } from '../types/types'
+
+const formData = ref<MortgageFormData>({
+propertyPrice: null,
+realEstateCommission: false,
+repaymentRate: null,
+totalSavings: null,
+})
+const handleSubmit = () => {
+    console.log(formData)
+}
+</script>
+
 <template>
   <div class="bg-white rounded-2xl shadow-xl p-8 mt-8 border border-gray-100">
     <div class="mb-8">
       <h2 class="text-2xl font-semibold text-gray-900">Mortgage Calculator</h2>
     </div>
-    <form class="space-y-6">
+    <form class="space-y-6" @submit.prevent="handleSubmit">
       <div class="space-y-2">
         <label for="commission" class="block text-sm font-medium text-gray-700">
           Real Estate Commission
         </label>
         <select
           id="commission"
+          v-model="formData.realEstateCommission"
           class="block w-full py-3 px-4 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
         >
           <option :value="false">No</option>
@@ -35,6 +51,7 @@
             step="1000"
             min="0"
             required
+            v-model.number="formData.propertyPrice"
             class="block w-full pl-10 pr-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
             placeholder="80,000"
           />
@@ -59,6 +76,7 @@
             step="1000"
             min="0"
             required
+            v-model.number="formData.totalSavings"
             class="block w-full pl-10 pr-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
             placeholder="80,000"
           />
@@ -78,6 +96,7 @@
             step="0.1"
             min="0"
             max="100"
+            v-model.number="formData.repaymentRate"
             class="block w-full pl-4 pr-10 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
             placeholder="3.5"
           />
